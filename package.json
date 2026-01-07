@@ -12,6 +12,7 @@
         "lint:code:fix": "biome check --write ",
         "lint:md": "remark . --frail",
         "lint:md:fix": "remark . --output",
+        "codacy:report": "./scripts/fetch-codacy-issues.sh",
         "check-types": "tsc --noEmit"
     },
     "repository": {
