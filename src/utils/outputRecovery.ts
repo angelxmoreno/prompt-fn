@@ -2,7 +2,9 @@ import type { generateText } from 'ai';
 import type { z } from 'zod';
 import type { createLogger } from './createLogger.ts';
 
-type RecoveredPart = { text?: string | null };
+interface RecoveredPart {
+    text?: string | null;
+}
 export type GenerationContent = Awaited<ReturnType<typeof generateText>>['content'];
 
 export const recoverFromContent = <OutputType>({
@@ -61,7 +63,7 @@ export const recoverFromResponseBody = <OutputType>({
         // Structured output from ai@6 generateText emits:
         // { output: [{ content: [{ text: '...' }, ...] }, ...] }
         // when using Output.object/json/choice. We only handle that shape here.
-        const content = (parsed.output as Array<{ content?: Array<{ text?: string }> }> | undefined)?.flatMap(
+        const content = (parsed.output as { content?: Array<{ text?: string }> }[] | undefined)?.flatMap(
             (message) => message.content ?? []
         );
 
