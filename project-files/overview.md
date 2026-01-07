@@ -42,6 +42,25 @@ The main entry point. It creates a callable function.
     *   Fallback path: If providers return JSON as a quoted string (common with Ollama/OpenAI compatibility APIs), we attempt recovery via `recoverFromResponseBody` and `recoverFromContent`.
 5.  **Return:** The fully validated, strongly typed object defined by `outputSchema`.
 
+### 3. Output Recovery Utilities
+
+The utils layer exposes:
+
+* `recoverFromResponseBody`: parses the raw HTTP response body that ships with `APICallError` so we can extract structured text even when the SDK can’t.
+* `recoverFromContent`: walks the `generation.content` array (text deltas, streaming chunks, etc.) and re-validates it against your `outputSchema`.
+
+Both functions downgrade logs to `logger.warn` when they succeed, giving visibility without failing the run.
+
+### 4. Integration Testing Notes
+
+The integration suite under `test/integration` is disabled by default. Set these environment variables to opt in:
+
+* `RUN_INTEGRATION_TESTS=true` – master switch for the entire describe block.
+* `OLLAMA_AI_HOST=http://127.0.0.1:11434` – enables both the native Ollama SDK test and the OpenAI-compatible test.
+* `GEMINI_API_KEY=<token>` – enables the Google Gemini scenario.
+
+Each provider `describe` block uses `describe.skipIf(...)`, so missing variables simply skip that portion rather than failing the whole file.
+
 ## Comparison to Current Implementation
 
 | Feature | Current (`LLMPrompter`) | New (`prompt-fn`) |
@@ -49,7 +68,7 @@ The main entry point. It creates a callable function.
 | **Transport** | Custom `fetch` / `ollama` lib | Vercel AI SDK (Standardized) |
 | **Retries** | Manual logic | Built-in (Exponential backoff) |
 | **Templating** | Eta (Hard dependency) | Flexible (Literals or Eta) |
-| **Output Validation** | Manual `JSON.parse` + Zod | `generateObject` (Native) |
+| **Output Validation** | Manual `JSON.parse` + Zod | `generateText` + `Output.object` w/ fallback recovery |
 | **Input Validation** | None (Implicit) | Zod (Explicit) |
 
 ## Example Usage
