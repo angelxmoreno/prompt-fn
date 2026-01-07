@@ -6,12 +6,12 @@ Type-safe, composable LLM functions powered by the Vercel AI SDK.
 
 ## Features
 
-- **Type-Safe:** `definePrompt` requires Zod schemas for both inputs and outputs so every call is validated twice.
-- **Structured Output:** Uses `generateText` + `Output.object` for primary parsing and falls back to recovery helpers when providers wrap JSON in strings (e.g., OpenAI-compatible Ollama).
-- **Flexible Templating:** Use template literals for simple prompts or Eta views/functions for complex layouts.
-- **Model Agnostic:** Accepts any Vercel AI SDK `LanguageModel` instance or raw model name (Google, OpenAI, Anthropic, Ollama, etc.).
-- **Integrated Logging:** Built on `pino` with prompt-level metadata and downgraded warnings when recovery succeeds.
-- **Robust:** Built-in retries from the AI SDK plus custom recovery utilities to extract structured data from malformed responses.
+* **Type-Safe:** `definePrompt` requires Zod schemas for both inputs and outputs so every call is validated twice.
+* **Structured Output:** Uses `generateText` + `Output.object` for primary parsing and falls back to recovery helpers when providers wrap JSON in strings (e.g., OpenAI-compatible Ollama).
+* **Flexible Templating:** Use template literals for simple prompts or Eta views/functions for complex layouts.
+* **Model Agnostic:** Accepts any Vercel AI SDK `LanguageModel` instance or raw model name (Google, OpenAI, Anthropic, Ollama, etc.).
+* **Integrated Logging:** Built on `pino` with prompt-level metadata and downgraded warnings when recovery succeeds.
+* **Robust:** Built-in retries from the AI SDK plus custom recovery utilities to extract structured data from malformed responses.
 
 ## Installation
 
@@ -131,9 +131,9 @@ Successful recoveries emit `logger.warn`, allowing tests to pass while signaling
 
 `prompt-fn` is not a replacement for the Vercel AI SDK—it is a thin layer on top of it. We:
 
-- Re-export nothing from `ai`; you still install and import providers (OpenAI, Google, Anthropic, Ollama, etc.) directly from the AI SDK ecosystem.
-- Call `generateText` under the hood so the SDK keeps handling retries, streaming, telemetry, and provider routing.
-- Lean on AI SDK testing primitives (`MockLanguageModelV3`, `simulateReadableStream`, etc.) so every unit test mirrors real provider behavior.
+* Re-export nothing from `ai`; you still install and import providers (OpenAI, Google, Anthropic, Ollama, etc.) directly from the AI SDK ecosystem.
+* Call `generateText` under the hood so the SDK keeps handling retries, streaming, telemetry, and provider routing.
+* Lean on AI SDK testing primitives (`MockLanguageModelV3`, `simulateReadableStream`, etc.) so every unit test mirrors real provider behavior.
 
 Because of that, upgrades to the AI SDK automatically flow through `prompt-fn`; if a provider adds new options, you can pass them via the `model` factory without waiting on this library.
 
@@ -150,9 +150,9 @@ bun run check-types                              # Ensures exported types remain
 
 Integration suites are opt-in so your CI doesn’t hit real models accidentally. Set the following variables before invoking `bun test test/integration/integration.test.ts`:
 
-- `RUN_INTEGRATION_TESTS=true` – turns the entire `describe` block on.
-- `OLLAMA_AI_HOST=http://127.0.0.1:11434` – required for the Ollama SDK + OpenAI-compatible scenarios.
-- `GEMINI_API_KEY=...` – enables the Google Gemini check (skipped when unset).
+* `RUN_INTEGRATION_TESTS=true` – turns the entire `describe` block on.
+* `OLLAMA_AI_HOST=http://127.0.0.1:11434` – required for the Ollama SDK + OpenAI-compatible scenarios.
+* `GEMINI_API_KEY=...` – enables the Google Gemini check (skipped when unset).
 
 Each provider block is guarded with `describe.skipIf(...)`, so missing variables simply skip that scenario. When all are provided, the test will call three different providers sequentially:
 

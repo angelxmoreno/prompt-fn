@@ -4,13 +4,13 @@
 
 ## Core Philosophy
 
-1.  **Prompts as Functions:** An LLM interaction should feel like a standard async function call: `const result = await myPrompt({ input: 'value' });`.
-2.  **Type Safety Everywhere:**
-    *   **Input:** Validated via Zod. You can't call a prompt with missing or wrong variables.
-    *   **Output:** Validated via Zod (and enforcing structured JSON output from the LLM).
-3.  **Engine Agnostic:**
-    *   **Templating:** Works with standard ES6 template literals (default) or integrated **Eta** templates for complex logic.
-    *   **Model:** Works with any model supported by the Vercel AI SDK (OpenAI, Anthropic, Google, Ollama, etc.).
+1. **Prompts as Functions:** An LLM interaction should feel like a standard async function call: `const result = await myPrompt({ input: 'value' });`.
+2. **Type Safety Everywhere:**
+   * **Input:** Validated via Zod. You can't call a prompt with missing or wrong variables.
+   * **Output:** Validated via Zod (and enforcing structured JSON output from the LLM).
+3. **Engine Agnostic:**
+   * **Templating:** Works with standard ES6 template literals (default) or integrated **Eta** templates for complex logic.
+   * **Model:** Works with any model supported by the Vercel AI SDK (OpenAI, Anthropic, Google, Ollama, etc.).
 
 ## Key Components
 
@@ -19,28 +19,29 @@
 The main entry point. It creates a callable function.
 
 **Config Options:**
-*   `name` (string): Unique identifier used in child loggers and error messages.
-*   `description` (string, optional): Short blurb injected into provider metadata.
-*   `inputSchema` (`z.ZodType`): Validates prompt variables before rendering.
-*   `outputSchema` (`z.ZodType`): Required schema that drives structured `generateText` calls.
-*   `template` (string | TemplateRenderer): A literal string, Eta view id, or function `(input) => string`.
-*   `model` (`LanguageModel | string`): Either a concrete Vercel AI SDK model instance (e.g., `google('gemini-2.0-flash')`) or a plain model id string.
-*   `eta` (`Eta`, optional): Render string templates through Eta when present.
-*   `logger` (`pino.Logger`, optional): Custom logger; defaults to `pino(pino-pretty())` with the prompt name attached as `module`.
+
+* `name` (string): Unique identifier used in child loggers and error messages.
+* `description` (string, optional): Short blurb injected into provider metadata.
+* `inputSchema` (`z.ZodType`): Validates prompt variables before rendering.
+* `outputSchema` (`z.ZodType`): Required schema that drives structured `generateText` calls.
+* `template` (string | TemplateRenderer): A literal string, Eta view id, or function `(input) => string`.
+* `model` (`LanguageModel | string`): Either a concrete Vercel AI SDK model instance (e.g., `google('gemini-2.0-flash')`) or a plain model id string.
+* `eta` (`Eta`, optional): Render string templates through Eta when present.
+* `logger` (`pino.Logger`, optional): Custom logger; defaults to `pino(pino-pretty())` with the prompt name attached as `module`.
 
 ### 2. Execution Flow
 
-1.  **Validation (Input):** The arguments passed to the generated function are validated against `inputSchema`.
-2.  **Rendering:**
-    *   If `template` is a function -> executed with input data.
-    *   If `template` is a string & `eta` is present -> rendered via Eta.
-    *   If `template` is a string & no `eta` -> used raw.
-3.  **LLM Call:**
-    *   Always routes through `generateText` with `Output.object({ schema })` so we can tap into raw provider responses.
-4.  **Structured Output:**
-    *   Primary path: `generation.output` is parsed and validated by the AI SDK.
-    *   Fallback path: If providers return JSON as a quoted string (common with Ollama/OpenAI compatibility APIs), we attempt recovery via `recoverFromResponseBody` and `recoverFromContent`.
-5.  **Return:** The fully validated, strongly typed object defined by `outputSchema`.
+1. **Validation (Input):** The arguments passed to the generated function are validated against `inputSchema`.
+2. **Rendering:**
+   * If `template` is a function -> executed with input data.
+   * If `template` is a string & `eta` is present -> rendered via Eta.
+   * If `template` is a string & no `eta` -> used raw.
+3. **LLM Call:**
+   * Always routes through `generateText` with `Output.object({ schema })` so we can tap into raw provider responses.
+4. **Structured Output:**
+   * Primary path: `generation.output` is parsed and validated by the AI SDK.
+   * Fallback path: If providers return JSON as a quoted string (common with Ollama/OpenAI compatibility APIs), we attempt recovery via `recoverFromResponseBody` and `recoverFromContent`.
+5. **Return:** The fully validated, strongly typed object defined by `outputSchema`.
 
 ### 3. Output Recovery Utilities
 

@@ -1,9 +1,11 @@
 # Todos
 
 ## Documentation
-- TypeDoc
-- Docusaurus
 
-## 3rd party 
-- CodeCov
-- Codacy
+* TypeDoc
+* Docusaurus
+
+## 3rd party
+
+* CodeCov
+* Codacy
