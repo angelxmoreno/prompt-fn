@@ -48,7 +48,25 @@ jobs:
         run: bun run check-types
 
       - name: Run test
-        run: bun run test
+        run: bun run test:coverage
+
+      - name: Upload coverage to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage to Codacy
+        if: ${{ !cancelled() && env.CODACY_PROJECT_TOKEN != '' }}
+        uses: codacy/codacy-coverage-reporter-action@v1
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        with:
+          api-token: ${{ env.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/lcov.info
 
   security:
     name: Security Scan
