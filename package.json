@@ -12,8 +12,10 @@
         "lint:code:fix": "biome check --write ",
         "lint:md": "remark . --frail",
         "lint:md:fix": "remark . --output",
+        "check-types": "tsc --noEmit",
         "codacy:report": "./scripts/fetch-codacy-issues.sh",
-        "check-types": "tsc --noEmit"
+        "docs": "typedoc",
+        "docs:watch": "typedoc --watch"
     },
     "repository": {
         "type": "git",
@@ -42,6 +44,8 @@
         "remark-lint-no-dead-urls": "^2.0.1",
         "remark-preset-lint-recommended": "^7.0.1",
         "rimraf": "^6.1.2",
+        "typedoc": "^0.28.15",
+        "typedoc-plugin-markdown": "^4.9.0",
         "typescript": "^5.9.3"
     }
 }
