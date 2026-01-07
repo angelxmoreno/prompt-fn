@@ -2,16 +2,12 @@
 
 ## Documentation
 
-* TypeDoc
-* Docusaurus
-
-## 3rd party
-
-* CodeCov
-* Codacy
-
-## Badges
-
-## Contribution and code of conduct pages
+* [TypeDoc](./typedoc-setup.md)
+* [llm.txt](./llm-setup.md)
+* [Docusaurus](./Docusaurus-setup.md)
 
 ## release flow
+
+* [setup release-it](./release-ci.md)
+
+## examples dir

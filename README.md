@@ -14,6 +14,8 @@ Type-safe, composable LLM functions powered by the Vercel AI SDK.
 
 `prompt-fn` turns prompts into reusable TypeScript functions with enforced schemas, prompt-aware logging, and resilient recovery across providers.
 
+[📘 Contribution Guide](CONTRIBUTING.md) • [🤝 Code of Conduct](CODE_OF_CONDUCT.md)
+
 ## Features
 
 * **Type-Safe:** `definePrompt` requires Zod schemas for both inputs and outputs so every call is validated twice.
