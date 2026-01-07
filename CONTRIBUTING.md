@@ -23,20 +23,21 @@ Thank you for your interest in improving `prompt-fn`! This project embraces open
 
 ## Pull Request Checklist
 
-- Follow the existing code style (Biome + remark-lint).
-- Write or update tests for every behavior change.
-- Keep PRs focused; large features should be broken into smaller pieces when possible.
-- Update documentation (README, project-files) if API/behavior changes.
-- Ensure commit messages follow Conventional Commits (e.g., `fix: handle empty prompt input`).
-- Verify CI passes before requesting review.
+* Follow the existing code style (Biome + remark-lint).
+* Write or update tests for every behavior change.
+* Keep PRs focused; large features should be broken into smaller pieces when possible.
+* Update documentation (README, project-files) if API/behavior changes.
+* Ensure commit messages follow Conventional Commits (e.g., `fix: handle empty prompt input`).
+* Verify CI passes before requesting review.
 
 ## Reporting Issues
 
 Please include:
-- Steps to reproduce.
-- Expected vs. actual behavior.
-- Environment details (OS, Bun version, provider, etc.).
-- Relevant logs or stack traces.
+
+* Steps to reproduce.
+* Expected vs. actual behavior.
+* Environment details (OS, Bun version, provider, etc.).
+* Relevant logs or stack traces.
 
 ## Releasing
 
