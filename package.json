@@ -14,6 +14,11 @@
         "lint:md:fix": "remark . --output",
         "check-types": "tsc --noEmit"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/angelxmoreno/prompt-fn.git"
+    },
+    "homepage": "https://github.com/angelxmoreno/prompt-fn#readme",
     "dependencies": {
         "ai": "^6.0.14",
         "eta": "^4.5.0",
