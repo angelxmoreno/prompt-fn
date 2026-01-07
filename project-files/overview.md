@@ -19,15 +19,14 @@
 The main entry point. It creates a callable function.
 
 **Config Options:**
-*   `name` (string): Unique identifier for logging/debugging.
-*   `description` (string, optional): Context for the LLM about what this function does.
-*   `inputSchema` (ZodSchema): Defines the shape of the input variables.
-*   `outputSchema` (ZodSchema): Defines the shape of the expected JSON response.
-*   `template` (string | (input: Input) => string):
-    *   Can be a simple string (if using Eta/external files).
-    *   Can be a function returning a string (for template literals).
-*   `model`: The Vercel AI SDK model instance.
-*   `eta` (EtaInstance, optional): If provided, enables Eta templating logic.
+*   `name` (string): Unique identifier used in child loggers and error messages.
+*   `description` (string, optional): Short blurb injected into provider metadata.
+*   `inputSchema` (`z.ZodType`): Validates prompt variables before rendering.
+*   `outputSchema` (`z.ZodType`): Required schema that drives structured `generateText` calls.
+*   `template` (string | TemplateRenderer): A literal string, Eta view id, or function `(input) => string`.
+*   `model` (`LanguageModel | string`): Either a concrete Vercel AI SDK model instance (e.g., `google('gemini-2.0-flash')`) or a plain model id string.
+*   `eta` (`Eta`, optional): Render string templates through Eta when present.
+*   `logger` (`pino.Logger`, optional): Custom logger; defaults to `pino(pino-pretty())` with the prompt name attached as `module`.
 
 ### 2. Execution Flow
 
@@ -37,10 +36,11 @@ The main entry point. It creates a callable function.
     *   If `template` is a string & `eta` is present -> rendered via Eta.
     *   If `template` is a string & no `eta` -> used raw.
 3.  **LLM Call:**
-    *   Uses `generateObject` (from Vercel AI SDK) if `outputSchema` is present.
-    *   Uses `generateText` if no `outputSchema` is defined (returns raw string).
-4.  **Validation (Output):** The Vercel AI SDK handles the JSON parsing and validation against `outputSchema`.
-5.  **Return:** The strongly-typed result is returned.
+    *   Always routes through `generateText` with `Output.object({ schema })` so we can tap into raw provider responses.
+4.  **Structured Output:**
+    *   Primary path: `generation.output` is parsed and validated by the AI SDK.
+    *   Fallback path: If providers return JSON as a quoted string (common with Ollama/OpenAI compatibility APIs), we attempt recovery via `recoverFromResponseBody` and `recoverFromContent`.
+5.  **Return:** The fully validated, strongly typed object defined by `outputSchema`.
 
 ## Comparison to Current Implementation
 
