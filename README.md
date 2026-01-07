@@ -16,8 +16,13 @@ Type-safe, composable LLM functions powered by the Vercel AI SDK.
 ## Installation
 
 ```bash
-npm install prompt-fn ai zod pino pino-pretty
+# Bun (preferred)
+bun add prompt-fn ai zod pino pino-pretty
 # Install your preferred providers (examples)
+bun add @ai-sdk/google ai-sdk-ollama
+
+# npm alternative
+npm install prompt-fn ai zod pino pino-pretty
 npm install @ai-sdk/google ai-sdk-ollama
 ```
 
@@ -39,7 +44,7 @@ const sayHello = definePrompt({
     outputSchema: z.object({
         message: z.string(),
     }),
-    template: (input) => `Reply with JSON {"message": string}. Say hello to ${input.name} in a pirate voice.`,
+    template: (input) => `Say hello to ${input.name} in a pirate voice and keep it short.`,
 });
 
 const response = await sayHello({ name: 'World' });
@@ -122,6 +127,16 @@ Many OpenAI-compatible endpoints (notably Ollama's REST server) wrap JSON object
 
 Successful recoveries emit `logger.warn`, allowing tests to pass while signaling data quirks. If every layer fails, errors propagate with full context for easier debugging.
 
+## Relationship to the Vercel AI SDK
+
+`prompt-fn` is not a replacement for the Vercel AI SDK—it is a thin layer on top of it. We:
+
+- Re-export nothing from `ai`; you still install and import providers (OpenAI, Google, Anthropic, Ollama, etc.) directly from the AI SDK ecosystem.
+- Call `generateText` under the hood so the SDK keeps handling retries, streaming, telemetry, and provider routing.
+- Lean on AI SDK testing primitives (`MockLanguageModelV3`, `simulateReadableStream`, etc.) so every unit test mirrors real provider behavior.
+
+Because of that, upgrades to the AI SDK automatically flow through `prompt-fn`; if a provider adds new options, you can pass them via the `model` factory without waiting on this library.
+
 ## Testing
 
 Integration coverage lives under `test/integration`. Use targeted commands when iterating against specific providers:
@@ -130,6 +145,59 @@ Integration coverage lives under `test/integration`. Use targeted commands when 
 bun test test/integration/integration.test.ts   # Runs Ollama SDK, Google Gemini, and OpenAI-compatible suites
 bun run check-types                              # Ensures exported types remain sound
 ```
+
+### Integration Test Environment
+
+Integration suites are opt-in so your CI doesn’t hit real models accidentally. Set the following variables before invoking `bun test test/integration/integration.test.ts`:
+
+- `RUN_INTEGRATION_TESTS=true` – turns the entire `describe` block on.
+- `OLLAMA_AI_HOST=http://127.0.0.1:11434` – required for the Ollama SDK + OpenAI-compatible scenarios.
+- `GEMINI_API_KEY=...` – enables the Google Gemini check (skipped when unset).
+
+Each provider block is guarded with `describe.skipIf(...)`, so missing variables simply skip that scenario. When all are provided, the test will call three different providers sequentially:
+
+```bash
+RUN_INTEGRATION_TESTS=true \
+OLLAMA_AI_HOST=http://127.0.0.1:11434 \
+GEMINI_API_KEY=your-key \
+    bun test test/integration/integration.test.ts
+```
+
+Adjust or add additional env vars as you introduce more providers in the future.
+
+### Testing Your Prompts in Other Projects
+
+When you depend on `prompt-fn` inside another app or package, you can test your prompts without hitting real providers by reusing the AI SDK mocks (see the [AI SDK Testing Guide](https://ai-sdk.dev/docs/ai-sdk-core/testing)):
+
+```typescript
+import { definePrompt } from 'prompt-fn';
+import { z } from 'zod';
+import { MockLanguageModelV3 } from 'ai/test';
+
+const mockModel = new MockLanguageModelV3({
+    doGenerate: async () => ({
+        content: [{ type: 'text', text: '{"summary":"ok"}' }],
+        finishReason: { unified: 'stop', raw: 'stop' },
+        usage: {
+            inputTokens: { total: 1, noCache: 1, cacheRead: 0, cacheWrite: 0 },
+            outputTokens: { total: 1, text: 1, reasoning: 0 },
+        },
+        warnings: [],
+    }),
+});
+
+const summarize = definePrompt({
+    name: 'summarize',
+    model: mockModel,
+    inputSchema: z.object({ text: z.string() }),
+    outputSchema: z.object({ summary: z.string() }),
+    template: ({ text }) => `Summarize the following text in plain English: ${text}`,
+});
+
+await expect(summarize({ text: 'hello' })).resolves.toEqual({ summary: 'ok' });
+```
+
+The same approach works for error cases—throw an `APICallError` or return malformed JSON from the mock to exercise recovery paths. For streaming scenarios, use `simulateReadableStream` from `ai/test`. This keeps downstream unit tests deterministic while still covering all control flow inside `definePrompt`.
 
 ## License
 
