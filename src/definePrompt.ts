@@ -8,6 +8,25 @@ import { recoverFromContent, recoverFromResponseBody } from './utils/outputRecov
 
 type GenerationResult = Awaited<ReturnType<typeof generateText>>;
 
+/**
+ * Defines a strongly-typed AI prompt function using Zod schemas for input and output validation.
+ *
+ * @template TInputSchema - The Zod schema for validation of the prompt input parameters.
+ * @template TOutputSchema - The Zod schema for validation of the structured output.
+ * @param params - Configuration object for the prompt.
+ * @param params.name - The name of the prompt (used for logging and debugging).
+ * @param params.description - A description of what the prompt does.
+ * @param params.inputSchema - Zod schema to validate the input parameters.
+ * @param params.outputSchema - Zod schema to validate the AI model's output.
+ * @param params.template - The prompt template (string or function).
+ * @param params.model - The language model configuration.
+ * @param params.eta - Optional Eta instance for template rendering.
+ * @param params.logger - Optional logger instance.
+ * @returns An async function that accepts valid input, sends the prompt to the AI model, and returns the validated structured output.
+ * @throws {z.ZodError} If input validation fails.
+ * @throws {APICallError} If the AI model call fails and recovery is not possible.
+ * @throws {Error} If output validation or parsing fails and recovery is not possible.
+ */
 export const definePrompt = <
     TInputSchema extends z.ZodType<Record<string, unknown>>,
     TOutputSchema extends z.ZodTypeAny,

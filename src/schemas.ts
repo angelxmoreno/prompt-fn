@@ -3,6 +3,13 @@ import { Eta } from 'eta';
 import type { Logger } from 'pino';
 import { z } from 'zod';
 
+/**
+ * A function that renders a template using the provided input.
+ *
+ * @template T - The type of the input data.
+ * @param input - The data to use for rendering the template.
+ * @returns The rendered string or a promise that resolves to the rendered string.
+ */
 export type TemplateRenderer<T extends Record<string, unknown> = Record<string, unknown>> = (
     input: T
 ) => string | Promise<string>;
@@ -33,6 +40,9 @@ const LoggerSchema = z
     )
     .optional();
 
+/**
+ * Zod schema validation for prompt definitions.
+ */
 export const DefinePromptConfigSchema = z.object({
     name: z.string().trim().min(1, 'name is required'),
     description: z.string().trim().min(1, 'description cannot be empty').optional(),
