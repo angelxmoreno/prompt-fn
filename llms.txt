@@ -1,0 +1,57 @@
+# prompt-fn
+
+> Type-safe, composable LLM functions powered by the Vercel AI SDK.
+
+## Key Documentation Resources
+
+- **Project Home & Overview**: [https://github.com/angelxmoreno/prompt-fn](https://github.com/angelxmoreno/prompt-fn)
+  - Primary entry point containing installation, basic usage, and feature overview.
+- **Contribution Guide**: [https://github.com/angelxmoreno/prompt-fn/blob/main/CONTRIBUTING.md](https://github.com/angelxmoreno/prompt-fn/blob/main/CONTRIBUTING.md)
+  - Standards for code style, testing, and pull requests.
+- **Code of Conduct**: [https://github.com/angelxmoreno/prompt-fn/blob/main/CODE_OF_CONDUCT.md](https://github.com/angelxmoreno/prompt-fn/blob/main/CODE_OF_CONDUCT.md)
+  - Community standards and enforcement policies.
+
+## API Reference Highlights
+
+- **Generated Documentation**: [https://github.com/angelxmoreno/prompt-fn/tree/main/docs/api](https://github.com/angelxmoreno/prompt-fn/tree/main/docs/api)
+  - Comprehensive TypeDoc output for all exported symbols.
+- **Core Function**: `definePrompt`
+  - [https://github.com/angelxmoreno/prompt-fn/blob/main/src/definePrompt.ts](https://github.com/angelxmoreno/prompt-fn/blob/main/src/definePrompt.ts)
+  - Creates a strongly-typed, recoverable prompt function from Zod schemas and a template.
+- **Configuration**: `DefinePromptConfig`
+  - [https://github.com/angelxmoreno/prompt-fn/blob/main/src/types.ts](https://github.com/angelxmoreno/prompt-fn/blob/main/src/types.ts)
+  - Defines parameters for model selection, schemas, templates, and logging.
+- **Output Recovery**: `recoverFromContent` / `recoverFromResponseBody`
+  - [https://github.com/angelxmoreno/prompt-fn/blob/main/src/utils/outputRecovery.ts](https://github.com/angelxmoreno/prompt-fn/blob/main/src/utils/outputRecovery.ts)
+  - Utilities for extracting structured data from malformed LLM responses.
+
+## Common Tasks
+
+- **Creating a Simple Prompt**:
+  - Define `inputSchema` and `outputSchema` with Zod to enforce type safety.
+  - See "Usage" in [README](https://github.com/angelxmoreno/prompt-fn#usage).
+- **Using Templates**:
+  - Use simple string literals or integrate `Eta` for complex, view-based prompts.
+  - See [src/utils/createPromptBuilder.ts](https://github.com/angelxmoreno/prompt-fn/blob/main/src/utils/createPromptBuilder.ts).
+- **Testing Prompts**:
+  - Use `MockLanguageModelV3` from `ai/test` to unit test prompts without network calls.
+  - See "Testing Your Prompts in Other Projects" in [README](https://github.com/angelxmoreno/prompt-fn#testing-your-prompts-in-other-projects).
+- **Integration Testing**:
+  - Run tests against live models (Ollama, Gemini) using environment variables.
+  - See "Integration Test Environment" in [README](https://github.com/angelxmoreno/prompt-fn#integration-test-environment).
+
+## Contribution & Support
+
+- **Issue Tracker**: [https://github.com/angelxmoreno/prompt-fn/issues](https://github.com/angelxmoreno/prompt-fn/issues)
+  - Report bugs or request features.
+- **Pull Requests**: [https://github.com/angelxmoreno/prompt-fn/pulls](https://github.com/angelxmoreno/prompt-fn/pulls)
+  - Submit code changes.
+- **Release Process**: [https://github.com/angelxmoreno/prompt-fn/blob/main/project-files/release-ci.md](https://github.com/angelxmoreno/prompt-fn/blob/main/project-files/release-ci.md)
+  - Documentation on how releases are managed via CI.
+
+## Version & Contact
+
+- **Version**: 0.1.0
+- **Repository**: [https://github.com/angelxmoreno/prompt-fn](https://github.com/angelxmoreno/prompt-fn)
+- **License**: MIT
+- **Last Updated**: January 7, 2026

@@ -71,11 +71,14 @@ You are helping prepare an `llms.txt` file for the `prompt-fn` project. The goal
 Instructions:
 - Structure the output with headings: Title, Key Docs, API Reference Highlights, Common Tasks, Contribution & Support, Version/Contact.
 - Use concise bullet points (1–2 sentences each) with absolute URLs.
-- Prioritize authoritative sources (README, API docs, contribution guides, integration tests).
+- Prioritize authoritative sources (README, TypeDoc output under docs/api, contribution guides, integration tests).
+- When listing API references, link to the TypeDoc output and use version information from package.json.
+- Follow the recommended outline above (Key Docs, API highlights, FAQs, Contribution & Support).
 - Include version and last-updated metadata at the top.
 - Keep marketing language minimal; focus on actionable information.
+- **Important:** Instead of printing the file contents to stdout, write the generated Markdown to an `llms.txt` file at the repository root.
 
-Respond with the final Markdown file only.
+Respond with the final Markdown file only after writing it to disk.
 ```
 
 ## Hosting
