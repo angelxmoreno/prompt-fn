@@ -48,7 +48,7 @@ bun add --dev release-it @release-it/conventional-changelog
 * `commitMessage`: ensures release commits/tags follow our style.
 * `hooks.before:init`: run validation before releasing.
 
-## CI Workflow Outline (`.github/workflows/release.yml`)
+## GitHub CI Workflow Outline (`.github/workflows/release.yml`)
 
 ```yaml
 name: Release
@@ -83,7 +83,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx release-it --ci
+        run: bunx release-it --ci
 ```
 
 * `fetch-depth: 0` ensures release-it can inspect tags.
