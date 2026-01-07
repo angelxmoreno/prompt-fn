@@ -1,10 +1,10 @@
-import { type FlexibleSchema, generateText, Output } from 'ai';
+import { APICallError, type FlexibleSchema, generateText, Output } from 'ai';
 import type { z } from 'zod';
 import { DefinePromptConfigSchema } from './schemas.ts';
 import type { DefinePromptConfig } from './types.ts';
 import { createLogger } from './utils/createLogger.ts';
 import { createPromptBuilder } from './utils/createPromptBuilder.ts';
-import { recoverFromContent } from './utils/recoverFromContent.ts';
+import { recoverFromContent, recoverFromResponseBody } from './utils/outputRecovery.ts';
 
 type GenerationResult = Awaited<ReturnType<typeof generateText>>;
 
@@ -61,12 +61,28 @@ export const definePrompt = <
                 }),
             });
         } catch (error) {
+            if (APICallError.isInstance(error)) {
+                const recovered = recoverFromResponseBody<OutputType>({
+                    responseBody: error.responseBody,
+                    schema: outputSchema,
+                    logger,
+                    name,
+                });
+
+                if (recovered !== null) {
+                    return recovered;
+                }
+
+                logger.info({ responseBody: error.responseBody });
+            }
+
             logger.error(
                 {
                     errorName: (error as { name?: string }).name,
                 },
                 'Unable to generate response'
             );
+
             throw error;
         }
 
@@ -76,7 +92,9 @@ export const definePrompt = <
             return generation.output as OutputType;
         } catch (error) {
             const recovered = recoverFromContent<OutputType>({
-                content: generation.content,
+                content: generation.content?.map((part) =>
+                    'text' in part && typeof part.text === 'string' ? { text: part.text } : { text: null }
+                ),
                 logger,
                 name,
                 schema: outputSchema,
