@@ -58,6 +58,9 @@ export const recoverFromResponseBody = <OutputType>({
 
     try {
         const parsed = JSON.parse(responseBody);
+        // The AI SDK v3 JSON payload stores provider-agnostic responses as:
+        // { output: [{ content: [{ text: '...' }, ...] }, ...] }
+        // See https://ai-sdk.dev/docs/ai-sdk-core/testing for the LanguageModelV3 shape.
         const content = (parsed.output as Array<{ content?: Array<{ text?: string }> }> | undefined)?.flatMap(
             (message) => message.content ?? []
         );
