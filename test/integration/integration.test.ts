@@ -13,17 +13,17 @@ const renderer = (input: Record<string, unknown>) => {
     return `Answer this math question:  what is ${number1} + ${number2}`;
 };
 
-describe('definePrompt integration', () => {
+const runIntegrationTests = Bun.env.RUN_INTEGRATION_TESTS === 'true';
+const ollamaHost = Bun.env.OLLAMA_AI_HOST;
+const runGeminiIntegration = !!Bun.env.GEMINI_API_KEY;
+
+describe.skipIf(!runIntegrationTests)('definePrompt integration', () => {
     describe('using string templates', () => {
         const inputSchema = z.object({
             number1: z.number().min(1),
             number2: z.number().min(1),
         });
-        const outputSchema = z
-            .object({
-                answer: z.number(),
-            })
-            .extend(inputSchema.shape);
+        const outputSchema = z.object({ answer: z.number() }).extend(inputSchema.shape);
         const logger = pino(pinoPretty());
         logger.level = 'error';
         const params: DefinePromptConfig<typeof inputSchema, typeof outputSchema> = {
@@ -46,10 +46,10 @@ describe('definePrompt integration', () => {
             ...dataObj,
         };
 
-        describe('Using Ollama sdk', () => {
+        describe.skipIf(!ollamaHost)('Using Ollama sdk', () => {
             it('returns a response object', async () => {
                 const ollama = createOllama({
-                    baseURL: 'http://127.0.0.1:11434',
+                    baseURL: ollamaHost,
                 });
                 const ollamaModel = ollama('gemma3:270m');
 
@@ -61,7 +61,8 @@ describe('definePrompt integration', () => {
                 expect(response).toMatchObject(expectedResponseObj);
             }, 10_000);
         });
-        describe('Using Google Gemini', () => {
+
+        describe.skipIf(!runGeminiIntegration)('Using Google Gemini', () => {
             it('returns a response object', async () => {
                 const googleModel = google('gemini-flash-lite-latest');
 
@@ -74,11 +75,11 @@ describe('definePrompt integration', () => {
             }, 10_000);
         });
 
-        describe('Using Ollama as OpenAi', () => {
+        describe.skipIf(!ollamaHost)('Using Ollama as OpenAi', () => {
             it('returns a response object', async () => {
                 const ollama2 = createOpenAI({
                     apiKey: 'ollama',
-                    baseURL: 'http://127.0.0.1:11434/v1',
+                    baseURL: `${ollamaHost}/v1`,
                 });
 
                 const ollamaModel2 = ollama2('gemma3:270m');
