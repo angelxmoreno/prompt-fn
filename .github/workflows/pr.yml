@@ -59,6 +59,13 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+      - name: Upload coverage to Codacy
+        if: ${{ !cancelled() && secrets.CODACY_PROJECT_TOKEN != '' }}
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          api-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/lcov.info
+
   security:
     name: Security Scan
     runs-on: ubuntu-latest
