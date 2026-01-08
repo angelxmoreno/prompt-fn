@@ -117,7 +117,7 @@ const complexReport = definePrompt({
 
 ## API Reference
 
-Full API documentation now lives at **https://prompt-fn.axmdev.app/docs/category/api-reference/**. Highlights:
+Full API documentation now lives at **<https://prompt-fn.axmdev.app/docs/category/api-reference/>**. Highlights:
 
 ### `definePrompt(config)`
 

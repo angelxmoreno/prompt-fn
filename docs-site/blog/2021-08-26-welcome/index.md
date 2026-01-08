@@ -2,7 +2,7 @@
 
 slug: welcome
 title: Welcome
-authors: \[slorber, yangshun]
+authors: \[angelxmoreno]
 tags: \[facebook, hello, docusaurus]
 ------------------------------------
 

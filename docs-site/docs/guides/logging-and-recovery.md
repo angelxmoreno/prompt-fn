@@ -36,5 +36,5 @@ You can override the recovery strategy by wrapping `recoverFromContent` or by tr
 ## Tuning provider requests
 
 * Ollama OpenAI-compatible endpoints often wrap JSON in quotes. The built-in recovery handles this scenario automatically.
-* For providers that support **structured output mode** (e.g., Gemini 1.5, OpenAI Reponses API), keep `outputSchema` strict—prompt-fn already passes the JSON schema to the provider.
+* For providers that support **structured output mode** (e.g., Gemini 1.5, OpenAI Responses API), keep `outputSchema` strict—prompt-fn already passes the JSON schema to the provider.
 * If you rely on `generateText`, consider supplying a lightweight `outputSchema` and falling back to `recoverFromContent` for consistency.

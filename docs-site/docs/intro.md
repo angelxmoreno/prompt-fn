@@ -10,7 +10,7 @@ prompt-fn turns LLM prompts into type-safe async functions. Every prompt has:
 
 * **Schema-first inputs/outputs** powered by Zod (inferred TypeScript types at compile time, validated at runtime).
 * **Flexible rendering** via template literals or Eta templates for advanced logic/partials.
-* **Provider agnostic models** by wrapping Vercel's AI SDK (`generateObject`/`generateText`) so OpenAI, Gemini, Anthropic, and Ollama work the same way.
+* **Provider-agnostic models** by wrapping Vercel's AI SDK (`generateObject`/`generateText`) so OpenAI, Gemini, Anthropic, and Ollama work the same way.
 * **Resilience tooling** such as pino logging, structured output recovery, and fallback parsing for providers that return malformed JSON.
 
 ## Key links
