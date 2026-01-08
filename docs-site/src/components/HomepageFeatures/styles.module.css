@@ -1,0 +1,26 @@
+.features {
+    padding: 3rem 0 4rem;
+    background: var(--pf-page-bg);
+}
+
+.featureCard {
+    background: var(--pf-card-bg);
+    border-radius: 16px;
+    color: var(--pf-card-text);
+    padding: 1.75rem;
+    height: 100%;
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.2);
+    border: 1px solid var(--pf-card-border);
+}
+
+.featureCard h3 {
+    color: var(--pf-card-text);
+}
+
+.featureHighlight {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pf-card-highlight);
+    margin-bottom: 0.5rem;
+}

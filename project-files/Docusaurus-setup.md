@@ -8,14 +8,14 @@ Prerequisites:
 ## Goals
 
 * Provide a polished documentation site with guides, API reference, and AI-friendly metadata.
-* Host on GitHub Pages (or Netlify/Vercel) with automatic builds via CI.
+* Host on GitHub Pages, then map it to a custom `prompt-fn.js.org` domain.
 
 ## Steps
 
 ### 1. Initialize Docusaurus
 
 ```bash
-npx create-docusaurus@latest docs-site classic
+bunx create-docusaurus@latest docs-site classic
 ```
 
 * Choose TypeScript template.
@@ -50,8 +50,8 @@ npx create-docusaurus@latest docs-site classic
 ### 7. Build & Deploy
 
 * Add `npm run build` (default Docusaurus build) and `npm run serve` scripts inside docs-site.
-* For GitHub Pages: use `docusaurus deploy` with `GITHUB_TOKEN`.
-* For Netlify/Vercel: configure build command `npm run build` and output `build/`.
+* For GitHub Pages: use `docusaurus deploy` with `GITHUB_TOKEN` (deploy to `gh-pages` branch).
+* After the site is stable, submit a PR to `js-org/js.org` requesting the `prompt-fn.js.org` CNAME pointing to `angelxmoreno.github.io/prompt-fn`.
 
 ### 8. CI Automation
 

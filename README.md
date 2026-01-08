@@ -14,7 +14,7 @@ Type-safe, composable LLM functions powered by the Vercel AI SDK.
 
 `prompt-fn` turns prompts into reusable TypeScript functions with enforced schemas, prompt-aware logging, and resilient recovery across providers.
 
-[📘 Contribution Guide](CONTRIBUTING.md) • [🤝 Code of Conduct](CODE_OF_CONDUCT.md) • [🧭 llms.txt](llms.txt)
+[📘 Contribution Guide](CONTRIBUTING.md) • [🤝 Code of Conduct](CODE_OF_CONDUCT.md) • [🧭 llms.txt](https://prompt-fn.axmdev.app/llms.txt)
 
 ## Features
 
@@ -41,8 +41,9 @@ npm install @ai-sdk/google ai-sdk-ollama
 ## Usage
 
 ### Example Projects
-- `examples/support-ticket.ts`: triage customer support emails into severities and next actions using Ollama or OpenAI-compatible endpoints.
-- `examples/product-brief.ts`: generate a marketing brief and checklist using Google Gemini with an Eta template.
+
+* `examples/support-ticket.ts`: triage customer support emails into severities and next actions using Ollama or OpenAI-compatible endpoints.
+* `examples/product-brief.ts`: generate a marketing brief and checklist using Google Gemini with an Eta template.
 
 ### 1. Structured Text Response
 
@@ -115,6 +116,8 @@ const complexReport = definePrompt({
 ```
 
 ## API Reference
+
+Full API documentation now lives at **<https://prompt-fn.axmdev.app/docs/category/api-reference/>**. Highlights:
 
 ### `definePrompt(config)`
 
