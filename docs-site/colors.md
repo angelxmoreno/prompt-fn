@@ -1,4 +1,5 @@
-# Design Colors
+Design Colors
+=============
 
 The Docusaurus theme is locked to the same palette used across the main repo. Use these values when updating the logo, social images, or any additional illustrations so everything stays cohesive.
 

@@ -48,6 +48,7 @@
         "remark-frontmatter": "^5.0.0",
         "remark-lint-maximum-line-length": "^4.1.1",
         "remark-lint-no-dead-urls": "^2.0.1",
+        "remark-lint-no-literal-urls": "^4.0.1",
         "remark-preset-lint-recommended": "^7.0.1",
         "rimraf": "^6.1.2",
         "typedoc": "^0.28.15",

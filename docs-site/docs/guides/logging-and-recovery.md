@@ -1,13 +1,13 @@
-***
-
+---
 id: logging-and-recovery
-sidebar\_position: 2
+sidebar_position: 2
 title: Logging & Recovery
--------------------------
+---
 
 Resilient prompts need observability. prompt-fn layers structured logging, fallbacks, and manual content parsing so you can still ship when a provider emits malformed JSON.
 
-## pino logger
+pino logger
+-----------
 
 ```ts
 import pino from 'pino';
@@ -23,7 +23,8 @@ const addNumbers = definePrompt({
 * Each invocation logs `module`, `errorName`, and `content` when something goes wrong.
 * Use `logger.child({ module: name })` if you need per-prompt context.
 
-## Recovery flow
+Recovery flow
+-------------
 
 1. We call `generateObject` / `generateText` with `outputSchema`.
 2. If `generation.output` is missing, we inspect `generation.content` and attempt to parse JSON ourselves.
@@ -33,7 +34,8 @@ const addNumbers = definePrompt({
 
 You can override the recovery strategy by wrapping `recoverFromContent` or by transforming `generation.content` before calling `outputSchema.parse`.
 
-## Tuning provider requests
+Tuning provider requests
+------------------------
 
 * Ollama OpenAI-compatible endpoints often wrap JSON in quotes. The built-in recovery handles this scenario automatically.
 * For providers that support **structured output mode** (e.g., Gemini 1.5, OpenAI Responses API), keep `outputSchema` strict—prompt-fn already passes the JSON schema to the provider.

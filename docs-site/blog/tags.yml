@@ -1,19 +1,24 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+ai:
+  label: Artificial Intelligence
+  permalink: /ai
+  description: Updates related to AI workflows powered by prompt-fn.
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+llm:
+  label: Large Language Models
+  permalink: /llm
+  description: Deep dives on model compatibility and recovery features.
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+prompt-engineering:
+  label: Prompt Engineering
+  permalink: /prompt-engineering
+  description: Patterns for treating prompts like first-class functions.
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: Tips for schema-first TypeScript development with prompt-fn.
+
+documentation:
+  label: Documentation
+  permalink: /documentation
+  description: Guides and updates about the prompt-fn docs site.

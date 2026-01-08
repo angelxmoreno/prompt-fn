@@ -10,7 +10,8 @@ prompt-fn ships with two rendering paths:
 1. **Template functions** (default) – pass a function that receives the validated input and returns a string. Great for lightweight prompts and when you want to leverage TypeScript autocomplete.
 2. **Eta templates** – hand Eta an input object plus a template name and let Eta render loops/partials.
 
-## Template functions
+Template functions
+------------------
 
 ```ts
 const prompt = definePrompt({
@@ -21,7 +22,8 @@ const prompt = definePrompt({
 
 Because `template` is a function, TypeScript enforces the same structure as your `inputSchema`. No stringly-typed placeholders.
 
-## Eta templates
+Eta templates
+-------------
 
 ```ts
 import {Eta} from 'eta';
@@ -39,7 +41,8 @@ const prompt = definePrompt({
 * Prompt input is passed as the Eta context (`<%= it.body %>` etc.).
 * Use Eta when you need conditionals, loops, or shared partials. See `examples/templates/product-brief.eta` for a full example.
 
-## Tips
+Tips
+----
 
 * Keep templates small and push reuse into helpers so TypeDoc docs stay readable.
 * Avoid telling the LLM to “respond as JSON”; the AI SDK handles that instruction under the hood when you supply an `outputSchema`.

@@ -1,19 +1,20 @@
-***
-
+---
 id: installation
-sidebar\_position: 1
+sidebar_position: 1
 title: Install & Configure
---------------------------
+---
 
 prompt-fn is Bun-first but works with any Node.js runtime that supports the Vercel AI SDK.
 
-## Requirements
+Requirements
+------------
 
 * **Node.js 20+** (Bun bundles its own runtime)
 * **Bun 1.0+** if you want the fastest dev workflow
 * Access to at least one Vercel AI SDK provider (OpenAI, Google, Anthropic, Ollama, etc.)
 
-## Install
+Install
+-------
 
 ```bash
 bun add prompt-fn zod @ai-sdk/provider-utils pino
@@ -23,7 +24,8 @@ npm install prompt-fn zod @ai-sdk/provider-utils pino
 
 We rely on Zod for schemas, Vercel's provider utils for the shared types, and `pino` for logging.
 
-## Configure environment
+Configure environment
+---------------------
 
 Store provider keys in `.env` and load them before running prompts:
 
@@ -36,7 +38,8 @@ OLLAMA_BASE_URL=http://127.0.0.1:11434
 
 Bun automatically loads `.env` when executing scripts; with Node.js use something like `dotenv/config` or your framework's config loader.
 
-## Helpful scripts
+Helpful scripts
+---------------
 
 Add the following to `package.json` to align with the repo's tooling:
 

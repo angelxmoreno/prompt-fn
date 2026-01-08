@@ -1,9 +1,8 @@
-***
-
+---
 id: product-brief
-sidebar\_position: 2
+sidebar_position: 2
 title: Product brief generator
-------------------------------
+---
 
 Based on [`examples/product-brief.ts`](https://github.com/angelxmoreno/prompt-fn/blob/main/examples/product-brief.ts) and the Eta template in `examples/templates/product-brief.eta`.
 
@@ -35,13 +34,15 @@ const productBrief = definePrompt({
 });
 ```
 
-## Highlights
+Highlights
+----------
 
 * Uses Eta to keep the template readable and enable looping over bullet points.
 * Demonstrates how to colocate `.eta` files and load them by name.
 * Works with OpenAI, Gemini, or local Ollama models—swap `model` without touching the template.
 
-## Local run
+Local run
+---------
 
 ```bash
 bun tsx examples/product-brief.ts
