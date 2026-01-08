@@ -1,0 +1,89 @@
+:root {
+    --ifm-color-primary: #0f172a;
+    --ifm-color-primary-dark: #0c1323;
+    --ifm-color-primary-darker: #0a101e;
+    --ifm-color-primary-darkest: #050910;
+    --ifm-color-primary-light: #131c31;
+    --ifm-color-primary-lighter: #18223b;
+    --ifm-color-primary-lightest: #1f2a48;
+
+    --ifm-font-family-base: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ifm-heading-color: #020617;
+    --ifm-background-color: #f8fafc;
+
+    --pf-page-bg: #f8fafc;
+    --pf-card-bg: #0f172a;
+    --pf-card-border: rgba(148, 163, 184, 0.2);
+    --pf-card-text: #f8fafc;
+    --pf-card-highlight: #bfdbfe;
+    --pf-hero-gradient: linear-gradient(120deg, #0f172a, #2563eb);
+    --pf-hero-title: #f8fafc;
+    --pf-hero-subtitle: #e2e8f0;
+    --pf-navbar-bg: rgba(248, 250, 252, 0.9);
+    --pf-navbar-border: rgba(148, 163, 184, 0.3);
+    --pf-ghost-color: #1e3a8a;
+}
+
+:root[data-theme="dark"] {
+    --ifm-background-color: #020617;
+    --ifm-color-primary: #93c5fd;
+    --ifm-heading-color: #f8fafc;
+
+    --pf-page-bg: #020617;
+    --pf-card-bg: #111827;
+    --pf-card-border: rgba(148, 163, 184, 0.35);
+    --pf-card-text: #e2e8f0;
+    --pf-card-highlight: #93c5fd;
+    --pf-hero-gradient: linear-gradient(120deg, #020617, #1d4ed8);
+    --pf-hero-title: #f8fafc;
+    --pf-hero-subtitle: #cbd5f5;
+    --pf-navbar-bg: rgba(2, 6, 23, 0.88);
+    --pf-navbar-border: rgba(30, 41, 59, 0.8);
+    --pf-ghost-color: #bfdbfe;
+}
+
+.hero.hero--primary {
+    background: var(--pf-hero-gradient);
+    color: var(--pf-hero-title);
+}
+
+.hero.hero--primary .hero__title {
+    color: var(--pf-hero-title);
+}
+
+.hero.hero--primary .hero__subtitle {
+    color: var(--pf-hero-subtitle);
+}
+
+.button.button--secondary {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+}
+
+.button.button--outline {
+    border: 1px solid #1d4ed8;
+    color: #1d4ed8;
+    background: white;
+}
+
+.button.button--ghost {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--pf-ghost-color);
+    text-decoration: underline;
+}
+
+.navbar--fixed-top {
+    backdrop-filter: blur(12px);
+    background-color: var(--pf-navbar-bg);
+    border-bottom: 1px solid var(--pf-navbar-border);
+}
+
+.footer--dark {
+    background: #020617;
+}
+
+.main-wrapper {
+    background: var(--pf-page-bg);
+}
