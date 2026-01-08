@@ -1,5 +1,10 @@
 {
     "label": "Examples",
     "position": 4,
-    "collapsed": false
+    "collapsed": false,
+    "link": {
+        "type": "generated-index",
+        "title": "Examples",
+        "description": "Reference-ready prompt builders pulled straight from the repo's /examples folder."
+    }
 }

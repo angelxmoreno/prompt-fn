@@ -15,13 +15,12 @@ const config: Config = {
     },
 
     // Set the production url of your site here
-    url: 'https://angelxmoreno.github.io',
-    // Set the /<baseUrl>/ pathname under which your site is served
-    // For GitHub pages deployment, it is often '/<projectName>/'
-    baseUrl: '/prompt-fn/',
+    url: 'https://prompt-fn.axmdev.app',
+    // With a custom domain via CNAME we serve from the root
+    baseUrl: '/',
 
     // GitHub pages deployment config.
-    // If you aren't using GitHub pages, you don't need these.
+    // Used by the deploy script to know which repo hosts the site.
     organizationName: 'angelxmoreno', // Usually your GitHub org/user name.
     projectName: 'prompt-fn', // Usually your repo name.
 

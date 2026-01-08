@@ -16,7 +16,10 @@
         "check-types": "tsc --noEmit",
         "codacy:report": "./scripts/fetch-codacy-issues.sh",
         "docs": "typedoc",
-        "docs:watch": "typedoc --watch"
+        "docs:watch": "typedoc --watch",
+        "docs:site:dev": "bun --cwd docs-site start",
+        "docs:site:build": "bun --cwd docs-site build",
+        "docs:site:deploy": "GIT_USER=angelxmoreno USE_SSH=true bun --cwd docs-site deploy"
     },
     "repository": {
         "type": "git",

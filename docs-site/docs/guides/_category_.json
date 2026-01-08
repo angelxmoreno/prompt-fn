@@ -1,5 +1,10 @@
 {
     "label": "Guides",
     "position": 3,
-    "collapsed": false
+    "collapsed": false,
+    "link": {
+        "type": "generated-index",
+        "title": "Guides",
+        "description": "Deep dives on templates, recovery, testing, and provider-specific workflows."
+    }
 }
