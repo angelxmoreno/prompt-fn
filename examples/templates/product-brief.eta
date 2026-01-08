@@ -1,0 +1,13 @@
+Here is the context:
+
+Product name: <%= it.productName %>
+Target audience: <%= it.targetAudience %>
+Differentiators:
+<% it.differentiators.forEach(function(diff, index) { %>
+  <%= index + 1 %>. <%= diff %>
+<% }) %>
+
+Task:
+1. Produce a JSON object with keys headline, description, messagingChecklist, tone.
+2. messagingChecklist must be an array of objects with properties item and status (todo|ready).
+3. Keep the tone consistent with the recommendation.

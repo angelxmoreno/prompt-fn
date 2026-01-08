@@ -40,6 +40,10 @@ npm install @ai-sdk/google ai-sdk-ollama
 
 ## Usage
 
+### Example Projects
+- `examples/support-ticket.ts`: triage customer support emails into severities and next actions using Ollama or OpenAI-compatible endpoints.
+- `examples/product-brief.ts`: generate a marketing brief and checklist using Google Gemini with an Eta template.
+
 ### 1. Structured Text Response
 
 ```typescript
