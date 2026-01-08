@@ -45,6 +45,7 @@
         "ai-sdk-ollama": "^3.0.1",
         "lefthook": "^2.0.13",
         "remark-cli": "^12.0.1",
+        "remark-frontmatter": "^5.0.0",
         "remark-lint-maximum-line-length": "^4.1.1",
         "remark-lint-no-dead-urls": "^2.0.1",
         "remark-preset-lint-recommended": "^7.0.1",

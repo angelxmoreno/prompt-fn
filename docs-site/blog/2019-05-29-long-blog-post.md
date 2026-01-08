@@ -1,10 +1,9 @@
-***
-
+---
 slug: long-blog-post
 title: Long Blog Post
-authors: \[angelxmoreno]
-tags: \[hello, docusaurus]
---------------------------
+authors: [angelxmoreno]
+tags: [hello, docusaurus]
+---
 
 This is the summary of a very long blog post,
 

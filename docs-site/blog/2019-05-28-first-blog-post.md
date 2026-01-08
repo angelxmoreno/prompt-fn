@@ -1,7 +1,6 @@
-***
-
+---
 slug: first-blog-post
 title: First Blog Post
-authors: \[angelxmoreno]
-tags: \[hola, docusaurus]
--------------------------
+authors: [angelxmoreno]
+tags: [hola, docusaurus]
+---
