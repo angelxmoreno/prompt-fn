@@ -61,6 +61,8 @@ const config: Config = {
         ],
     ],
 
+    trailingSlash: true,
+
     themeConfig: {
         image: 'img/docusaurus-social-card.jpg',
         colorMode: {

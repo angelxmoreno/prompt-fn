@@ -17,15 +17,16 @@
         "codacy:report": "./scripts/fetch-codacy-issues.sh",
         "docs": "typedoc",
         "docs:watch": "typedoc --watch",
-        "docs:site:dev": "bun --cwd docs-site start",
-        "docs:site:build": "bun --cwd docs-site build",
-        "docs:site:deploy": "GIT_USER=angelxmoreno USE_SSH=true bun --cwd docs-site deploy"
+        "docs:site:sync": "bun scripts/docs-predeploy.ts",
+        "docs:site:dev": "bun run docs:site:sync && bun --cwd docs-site start",
+        "docs:site:build": "bun run docs:site:sync && bun --cwd docs-site build",
+        "docs:site:deploy": "bun run docs:site:sync && GIT_USER=angelxmoreno USE_SSH=true bun --cwd docs-site deploy"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/angelxmoreno/prompt-fn.git"
     },
-    "homepage": "https://github.com/angelxmoreno/prompt-fn#readme",
+    "homepage": "https://prompt-fn.axmdev.app",
     "dependencies": {
         "ai": "^6.0.14",
         "eta": "^4.5.0",

@@ -13,8 +13,8 @@
 
 ## API Reference Highlights
 
-- **Hosted API Documentation**: [https://prompt-fn.axmdev.app/docs/category/api-reference/](https://prompt-fn.axmdev.app/docs/category/api-reference/)
-  - Comprehensive TypeDoc output for all exported symbols, published via Docusaurus.
+- **Generated Documentation**: [https://github.com/angelxmoreno/prompt-fn/tree/main/docs/api](https://github.com/angelxmoreno/prompt-fn/tree/main/docs/api)
+  - Comprehensive TypeDoc output for all exported symbols.
 - **Core Function**: `definePrompt`
   - [https://github.com/angelxmoreno/prompt-fn/blob/main/src/definePrompt.ts](https://github.com/angelxmoreno/prompt-fn/blob/main/src/definePrompt.ts)
   - Creates a strongly-typed, recoverable prompt function from Zod schemas and a template.
