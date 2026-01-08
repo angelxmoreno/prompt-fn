@@ -2,7 +2,7 @@
 
 slug: long-blog-post
 title: Long Blog Post
-authors: yangshun
+authors: \[angelxmoreno]
 tags: \[hello, docusaurus]
 --------------------------
 

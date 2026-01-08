@@ -23,3 +23,12 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+angelxmoreno:
+  name: Angel Moreno
+  title: Maintainer of prompt-fn
+  url: https://github.com/angelxmoreno
+  image_url: https://github.com/angelxmoreno.png
+  page: true
+  socials:
+    github: angelxmoreno

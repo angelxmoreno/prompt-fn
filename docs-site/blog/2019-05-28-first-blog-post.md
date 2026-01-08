@@ -2,7 +2,7 @@
 
 slug: first-blog-post
 title: First Blog Post
-authors: \[slorber, yangshun]
+authors: \[angelxmoreno]
 tags: \[hola, docusaurus]
 -------------------------
 
