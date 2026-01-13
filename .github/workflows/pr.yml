@@ -59,6 +59,11 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+      - uses: qltysh/qlty-action/coverage@v2
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: ./coverage/lcov.info
+
   security:
     name: Security Scan
     runs-on: ubuntu-latest
