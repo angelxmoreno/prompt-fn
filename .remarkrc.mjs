@@ -1,4 +1,7 @@
 export default {
+    settings: {
+        resourceLink: true,
+    },
     plugins: [
         'remark-frontmatter',
         'remark-preset-lint-recommended', // base rules

@@ -1,9 +1,8 @@
-***
-
+---
 id: templates-and-renderers
-sidebar\_position: 1
+sidebar_position: 1
 title: Templates & Renderers
-----------------------------
+---
 
 prompt-fn ships with two rendering paths:
 

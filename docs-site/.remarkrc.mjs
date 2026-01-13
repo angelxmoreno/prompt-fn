@@ -1,5 +1,6 @@
 export default {
     settings: {
+        resourceLink: true,
         setext: true,
     },
     plugins: [
