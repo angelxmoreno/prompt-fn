@@ -3,7 +3,6 @@
 [![License](https://img.shields.io/github/license/angelxmoreno/prompt-fn?label=License\&style=flat)](https://github.com/angelxmoreno/prompt-fn/blob/main/LICENSE)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg?style=flat\&logo=typescript\&logoColor=white)](http://www.typescriptlang.org/)
 [![npm version](https://img.shields.io/npm/v/prompt-fn?style=flat\&color=ff69b4)](https://www.npmjs.com/package/prompt-fn)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/72407232d59e45c1abe601276552fc04?style=flat)](https://app.codacy.com/gh/angelxmoreno/prompt-fn/dashboard?utm_source=gh\&utm_medium=referral\&utm_content=\&utm_campaign=Badge_grade)
 [![codecov](https://codecov.io/gh/angelxmoreno/prompt-fn/graph/badge.svg?token=4THUXVOS1T\&style=flat)](https://codecov.io/gh/angelxmoreno/prompt-fn)
 [![Last Commit](https://img.shields.io/github/last-commit/angelxmoreno/prompt-fn?label=Last%20Commit\&style=flat)](https://github.com/angelxmoreno/prompt-fn/commits/main)
 [![dependencies](https://img.shields.io/librariesio/release/npm/prompt-fn?color=%23007a1f\&style=flat)](https://libraries.io/npm/prompt-fn)
@@ -14,7 +13,7 @@ Type-safe, composable LLM functions powered by the Vercel AI SDK.
 
 `prompt-fn` turns prompts into reusable TypeScript functions with enforced schemas, prompt-aware logging, and resilient recovery across providers.
 
-[📘 Contribution Guide](CONTRIBUTING.md) • [🤝 Code of Conduct](CODE_OF_CONDUCT.md) • [🧭 llms.txt](llms.txt)
+[📘 Contribution Guide](CONTRIBUTING.md) • [🤝 Code of Conduct](CODE_OF_CONDUCT.md) • [🧭 llms.txt](https://prompt-fn.axmdev.app/llms.txt)
 
 ## Features
 
@@ -41,8 +40,9 @@ npm install @ai-sdk/google ai-sdk-ollama
 ## Usage
 
 ### Example Projects
-- `examples/support-ticket.ts`: triage customer support emails into severities and next actions using Ollama or OpenAI-compatible endpoints.
-- `examples/product-brief.ts`: generate a marketing brief and checklist using Google Gemini with an Eta template.
+
+* `examples/support-ticket.ts`: triage customer support emails into severities and next actions using Ollama or OpenAI-compatible endpoints.
+* `examples/product-brief.ts`: generate a marketing brief and checklist using Google Gemini with an Eta template.
 
 ### 1. Structured Text Response
 
@@ -116,6 +116,8 @@ const complexReport = definePrompt({
 
 ## API Reference
 
+Full API documentation now lives at **[https://prompt-fn.axmdev.app/docs/category/api-reference/](https://prompt-fn.axmdev.app/docs/category/api-reference/)**. Highlights:
+
 ### `definePrompt(config)`
 
 Creates a callable async function.
@@ -132,6 +134,26 @@ Creates a callable async function.
 | `logger` | `pino.Logger?` | Supply a custom logger; otherwise `pino(pino-pretty())` is used. |
 
 `Result` is always `z.infer<typeof outputSchema>`. If the provider replies with JSON as a quoted string, `prompt-fn` attempts recovery before surfacing an error.
+
+## Docs Site (Docusaurus)
+
+The docs site lives in `docs-site/` and is synced from the root documentation before each build.
+
+**Common commands**
+
+```bash
+# Sync root docs into the Docusaurus site
+bun run docs:site:sync
+
+# Local dev server
+bun run docs:site:dev
+
+# Production build
+bun run docs:site:build
+
+# Deploy to GitHub Pages (uses docs-site/static/CNAME)
+bun run docs:site:deploy
+```
 
 ## Provider Compatibility & Recovery
 

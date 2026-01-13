@@ -14,15 +14,18 @@
         "lint:md": "remark . --frail",
         "lint:md:fix": "remark . --output",
         "check-types": "tsc --noEmit",
-        "codacy:report": "./scripts/fetch-codacy-issues.sh",
         "docs": "typedoc",
-        "docs:watch": "typedoc --watch"
+        "docs:watch": "typedoc --watch",
+        "docs:site:sync": "bun scripts/docs-predeploy.ts",
+        "docs:site:dev": "bun run docs:site:sync && bun --cwd docs-site start",
+        "docs:site:build": "bun run docs:site:sync && bun --cwd docs-site build",
+        "docs:site:deploy": "bun run docs:site:sync && GIT_USER=angelxmoreno USE_SSH=true bun --cwd docs-site deploy"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/angelxmoreno/prompt-fn.git"
     },
-    "homepage": "https://github.com/angelxmoreno/prompt-fn#readme",
+    "homepage": "https://prompt-fn.axmdev.app",
     "dependencies": {
         "ai": "^6.0.14",
         "eta": "^4.5.0",
@@ -41,8 +44,10 @@
         "ai-sdk-ollama": "^3.0.1",
         "lefthook": "^2.0.13",
         "remark-cli": "^12.0.1",
+        "remark-frontmatter": "^5.0.0",
         "remark-lint-maximum-line-length": "^4.1.1",
         "remark-lint-no-dead-urls": "^2.0.1",
+        "remark-lint-no-literal-urls": "^4.0.1",
         "remark-preset-lint-recommended": "^7.0.1",
         "rimraf": "^6.1.2",
         "typedoc": "^0.28.15",

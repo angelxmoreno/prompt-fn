@@ -1,0 +1,24 @@
+ai:
+  label: Artificial Intelligence
+  permalink: /ai
+  description: Updates related to AI workflows powered by prompt-fn.
+
+llm:
+  label: Large Language Models
+  permalink: /llm
+  description: Deep dives on model compatibility and recovery features.
+
+prompt-engineering:
+  label: Prompt Engineering
+  permalink: /prompt-engineering
+  description: Patterns for treating prompts like first-class functions.
+
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: Tips for schema-first TypeScript development with prompt-fn.
+
+documentation:
+  label: Documentation
+  permalink: /documentation
+  description: Guides and updates about the prompt-fn docs site.
