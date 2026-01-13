@@ -1,0 +1,18 @@
+config_version = "0"
+
+exclude_patterns = [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/.docusaurus/**",
+    "**/docs-site/build/**",
+]
+
+test_patterns = [
+    "**/test/**",
+    "**/*.test.ts",
+]
+
+[[source]]
+name = "default"
+default = true

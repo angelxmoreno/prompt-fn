@@ -35,3 +35,7 @@ docs/api/
 build/
 
 review-comments/
+
+.qlty/cache/
+.qlty/plugin_cachedir
+.qlty/results
