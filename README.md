@@ -135,6 +135,26 @@ Creates a callable async function.
 
 `Result` is always `z.infer<typeof outputSchema>`. If the provider replies with JSON as a quoted string, `prompt-fn` attempts recovery before surfacing an error.
 
+## Docs Site (Docusaurus)
+
+The docs site lives in `docs-site/` and is synced from the root documentation before each build.
+
+**Common commands**
+
+```bash
+# Sync root docs into the Docusaurus site
+bun run docs:site:sync
+
+# Local dev server
+bun run docs:site:dev
+
+# Production build
+bun run docs:site:build
+
+# Deploy to GitHub Pages (uses docs-site/static/CNAME)
+bun run docs:site:deploy
+```
+
 ## Provider Compatibility & Recovery
 
 Many OpenAI-compatible endpoints (notably Ollama's REST server) wrap JSON objects inside plain-text responses. `prompt-fn` recovers by:
