@@ -14,7 +14,6 @@
         "lint:md": "remark . --frail",
         "lint:md:fix": "remark . --output",
         "check-types": "tsc --noEmit",
-        "codacy:report": "./scripts/fetch-codacy-issues.sh",
         "docs": "typedoc",
         "docs:watch": "typedoc --watch",
         "docs:site:sync": "bun scripts/docs-predeploy.ts",

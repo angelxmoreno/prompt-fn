@@ -1,9 +1,0 @@
-engines:
-  markdownlint:
-    enabled: false
-  remark-lint:
-    enabled: true
-  semgrep:
-    patterns:
-      yaml.github-actions.security.third-party-action-not-pinned-to-commit-sha.third-party-action-not-pinned-to-commit-sha:
-        enabled: false

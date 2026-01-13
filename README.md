@@ -3,7 +3,6 @@
 [![License](https://img.shields.io/github/license/angelxmoreno/prompt-fn?label=License\&style=flat)](https://github.com/angelxmoreno/prompt-fn/blob/main/LICENSE)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg?style=flat\&logo=typescript\&logoColor=white)](http://www.typescriptlang.org/)
 [![npm version](https://img.shields.io/npm/v/prompt-fn?style=flat\&color=ff69b4)](https://www.npmjs.com/package/prompt-fn)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/72407232d59e45c1abe601276552fc04?style=flat)](https://app.codacy.com/gh/angelxmoreno/prompt-fn/dashboard?utm_source=gh\&utm_medium=referral\&utm_content=\&utm_campaign=Badge_grade)
 [![codecov](https://codecov.io/gh/angelxmoreno/prompt-fn/graph/badge.svg?token=4THUXVOS1T\&style=flat)](https://codecov.io/gh/angelxmoreno/prompt-fn)
 [![Last Commit](https://img.shields.io/github/last-commit/angelxmoreno/prompt-fn?label=Last%20Commit\&style=flat)](https://github.com/angelxmoreno/prompt-fn/commits/main)
 [![dependencies](https://img.shields.io/librariesio/release/npm/prompt-fn?color=%23007a1f\&style=flat)](https://libraries.io/npm/prompt-fn)
