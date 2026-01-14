@@ -30,9 +30,7 @@
             <name>Angel Moreno</name>
             <uri>https://github.com/angelxmoreno</uri>
         </author>
-        <category label="facebook" term="facebook"/>
-        <category label="hello" term="hello"/>
-        <category label="docusaurus" term="docusaurus"/>
+        <category label="Documentation" term="Documentation"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Long Blog Post]]></title>
