@@ -1,0 +1,22 @@
+{
+    "git": {
+        "commitMessage": "chore: release ${version}",
+        "tagName": "v${version}",
+        "requireCleanWorkingDir": true,
+        "requireUpstream": true
+    },
+    "npm": {
+        "publish": true
+    },
+    "github": {
+        "release": true
+    },
+    "hooks": {
+        "before:init": "bun run lint && bun run check-types && bun run test"
+    },
+    "plugins": {
+        "@release-it/conventional-changelog": {
+            "preset": "conventionalcommits"
+        }
+    }
+}
